@@ -27,3 +27,16 @@ services:
       - app
     ports:
       - 3003:80
+  search:
+    image: solr
+    ports:
+      - "8983:8983"
+    volumes:
+      - ./data:/opt/solr/server/solr/mycores
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - mycore
+volumes:
+  data:
+
