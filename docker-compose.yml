@@ -12,13 +12,15 @@ services:
 
   app:
     build: .
-    command: bundle exec puma -C config/puma.rb
+    # command: bundle exec puma -C config/puma.rb
+    # command: bundle exec unicorn -c config/unicorn.rb
+    command: bundle exec unicorn -p 3000
     ports:
       - "3000:3000"
     depends_on:
       - db
     volumes:
-      - .:/myapp
+      - ./shared/sockets:/myapp/shared/sockets
   web:
     build:
       context: .
@@ -27,6 +29,9 @@ services:
       - app
     ports:
       - 3003:80
+    # crazy test
+    volumes:
+      - ./shared/sockets:/sockets
   search:
     image: solr
     ports:

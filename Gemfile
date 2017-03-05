@@ -7,7 +7,8 @@ end
 
 gem 'rails', '~> 5.1.0.beta1'
 gem 'mysql2', '>= 0.3.18', '< 0.5'
-gem 'puma', '~> 3.7'
+# gem 'puma', '~> 3.7'
+gem 'unicorn'
 gem 'sass-rails', github: "rails/sass-rails"
 
 gem 'uglifier', '>= 1.3.0'
@@ -25,6 +26,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'capistrano', '~>3.7.2'
   gem 'capistrano-rails', group: :development
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
